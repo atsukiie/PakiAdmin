@@ -9,9 +9,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #ffffff;
-  color: #111827;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: #fbf7ff;
+  color: #2c0735;
 }
 
 a {
@@ -24,88 +24,709 @@ input {
   font: inherit;
 }
 
-.login-page {
+button {
+  border: 0;
+}
+
+.pakiadmin-icon {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.pakiadmin-make-page {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(222, 192, 241, 0.2);
+  color: #2c0735;
+}
+
+.pakiadmin-make-nav {
+  position: relative;
+  z-index: 50;
+  height: 80px;
+  flex: 0 0 auto;
+  border-bottom: 1px solid rgba(44, 7, 53, 0.05);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+.pakiadmin-make-main {
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background: #ffffff;
+  padding: 32px clamp(32px, 6vw, 96px);
 }
 
-.login-card {
+.pakiadmin-make-glow {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  z-index: 0;
+  width: 500px;
+  height: 500px;
+  border-radius: 999px;
+  background: #dec0f1;
+  filter: blur(140px);
+  opacity: 0.4;
+  transform: translateY(-50%);
+}
+
+.pakiadmin-make-grid {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 400px;
-  padding: 32px;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  background: #ffffff;
-}
-
-.login-card h1 {
-  margin: 0 0 8px;
-  font-size: 1.75rem;
-}
-
-.login-card p {
-  margin: 0 0 24px;
-  color: #6b7280;
-  line-height: 1.5;
-}
-
-.login-form {
+  max-width: 1280px;
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(40px, 5vw, 80px);
+}
+
+.pakiadmin-make-context {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  animation: pakiadmin-fade-left 700ms ease both;
+}
+
+.pakiadmin-make-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+.pakiadmin-make-brand p {
+  max-width: 448px;
+  margin: -20px 0 0;
+  color: rgba(44, 7, 53, 0.75);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.625;
+}
+
+.pakiadmin-make-logo {
+  width: 420px;
+  max-width: min(74vw, 420px);
+  display: grid;
+  justify-items: center;
+  color: #26005e;
+  filter: drop-shadow(0 5px 8px rgba(44, 7, 53, 0.12));
+}
+
+.pakiadmin-make-logo svg {
+  width: 164px;
+  height: 164px;
+  fill: currentColor;
+}
+
+.pakiadmin-make-logo .pakiadmin-logo-cutout {
+  fill: #f7efff;
+}
+
+.pakiadmin-make-logo strong {
+  margin-top: -4px;
+  color: #210028;
+  font-size: clamp(3rem, 5.2vw, 4.35rem);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 0.92;
+}
+
+.pakiadmin-make-logo span {
+  color: #26005e;
+}
+
+.pakiadmin-make-features {
+  width: 100%;
+  max-width: 512px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pakiadmin-make-feature-card {
+  display: flex;
+  align-items: center;
   gap: 16px;
+  min-height: 92px;
+  padding: 16px;
+  border: 1px solid #dec0f1;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 3px rgba(44, 7, 53, 0.07);
+  transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
-.field {
+.pakiadmin-make-feature-card:hover {
+  box-shadow: 0 8px 18px rgba(44, 7, 53, 0.1);
+  transform: translateY(-1px);
+}
+
+.pakiadmin-make-feature-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
   display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(222, 192, 241, 0.4);
+  color: #2c0735;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.pakiadmin-make-feature-card:hover .pakiadmin-make-feature-icon {
+  background: #2c0735;
+  color: #ffffff;
+}
+
+.pakiadmin-make-feature-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pakiadmin-make-feature-text {
+  min-width: 0;
+  text-align: left;
+}
+
+.pakiadmin-make-feature-text h4 {
+  margin: 0;
+  color: #2c0735;
+  font-size: 16px;
+  font-weight: 950;
+  line-height: 1.1;
+}
+
+.pakiadmin-make-feature-text p {
+  margin: 3px 0 0;
+  color: rgba(44, 7, 53, 0.5);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.pakiadmin-make-card-wrap {
+  display: flex;
+  justify-content: flex-end;
+  animation: pakiadmin-fade-right 700ms ease both;
+}
+
+.pakiadmin-make-card {
+  position: relative;
+  width: 100%;
+  max-width: 512px;
+  padding: clamp(32px, 4vw, 48px);
+  border: 1px solid #dec0f1;
+  border-radius: 40px;
+  background: #ffffff;
+  box-shadow: 0 25px 50px rgba(44, 7, 53, 0.1);
+}
+
+.pakiadmin-make-heading {
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.pakiadmin-make-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pakiadmin-make-heading-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(222, 192, 241, 0.3);
+  color: #2c0735;
+}
+
+.pakiadmin-make-heading-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pakiadmin-make-heading h2 {
+  margin: 0;
+  color: #2c0735;
+  font-size: 30px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.pakiadmin-make-heading p {
+  margin: 0;
+  color: rgba(44, 7, 53, 0.4);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pakiadmin-make-form {
+  display: grid;
+  gap: 20px;
+}
+
+.pakiadmin-make-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: 1px solid #fee2e2;
+  border-radius: 16px;
+  background: #fef2f2;
+}
+
+.pakiadmin-make-error svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  color: #ef4444;
+}
+
+.pakiadmin-make-error p {
+  margin: 0;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.pakiadmin-make-field {
+  display: grid;
+  gap: 6px;
+  text-align: left;
+}
+
+.pakiadmin-make-field label {
+  padding: 0 4px;
+  color: rgba(44, 7, 53, 0.6);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.pakiadmin-make-identifier {
+  display: flex;
   gap: 8px;
 }
 
-.field span {
-  font-size: 0.95rem;
-  font-weight: 500;
+.pakiadmin-make-code {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 14px 16px;
+  border: 1px solid #dec0f1;
+  border-radius: 12px;
+  background: rgba(222, 192, 241, 0.2);
+  color: #2c0735;
+  font-size: 14px;
+  font-weight: 800;
 }
 
-.field input {
+.pakiadmin-make-input-shell {
+  position: relative;
+  flex: 1;
+}
+
+.pakiadmin-make-input-shell > svg {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  width: 16px;
+  height: 16px;
+  color: rgba(44, 7, 53, 0.3);
+  transform: translateY(-50%);
+}
+
+.pakiadmin-make-input-shell input {
   width: 100%;
-  height: 44px;
-  padding: 0 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
+  min-height: 50px;
+  padding: 14px 44px 14px 44px;
+  border: 1px solid #dec0f1;
+  border-radius: 12px;
   outline: none;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  background: rgba(222, 192, 241, 0.1);
+  color: #2c0735;
+  font-size: 14px;
+  font-weight: 800;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
 }
 
-.field input:focus {
-  border-color: #9ca3af;
-  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15);
+.pakiadmin-make-input-shell input::placeholder {
+  color: rgba(44, 7, 53, 0.45);
 }
 
-.primary-button {
-  height: 44px;
-  border: 0;
-  border-radius: 8px;
-  background: #111111;
+.pakiadmin-make-input-shell input:focus {
+  border-color: #2c0735;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(44, 7, 53, 0.08);
+}
+
+.pakiadmin-make-eye {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: rgba(44, 7, 53, 0.2);
+  background: transparent;
+  transform: translateY(-50%);
+  transition: color 160ms ease;
+}
+
+.pakiadmin-make-eye:hover {
+  color: #2c0735;
+}
+
+.pakiadmin-make-eye svg {
+  width: 16px;
+  height: 16px;
+}
+
+.pakiadmin-make-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 4px;
+}
+
+.pakiadmin-make-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  color: rgba(44, 7, 53, 0.6);
+  font-size: 12px;
+  font-weight: 800;
+  transition: color 160ms ease;
+}
+
+.pakiadmin-make-remember:hover {
+  color: #2c0735;
+}
+
+.pakiadmin-make-remember > span {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #dec0f1;
+  border-radius: 6px;
+  background: #ffffff;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.pakiadmin-make-remember:hover > span {
+  border-color: #2c0735;
+}
+
+.pakiadmin-make-remember > span.is-checked {
+  border-color: #2c0735;
+  background: #2c0735;
+}
+
+.pakiadmin-make-remember svg {
+  width: 14px;
+  height: 14px;
   color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
+  stroke-width: 4;
+}
+
+.pakiadmin-make-link-button {
+  padding: 0;
+  background: transparent;
+  color: #2c0735;
+  font-size: 12px;
+  font-weight: 950;
+  transition: opacity 160ms ease;
+}
+
+.pakiadmin-make-link-button:hover {
+  opacity: 0.7;
+}
+
+.pakiadmin-make-submit {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #2c0735;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: box-shadow 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.pakiadmin-make-submit:hover {
+  box-shadow: 0 18px 28px rgba(44, 7, 53, 0.2);
+}
+
+.pakiadmin-make-submit:active {
+  transform: scale(0.98);
+}
+
+.pakiadmin-make-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pakiadmin-make-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(222, 192, 241, 0.5);
+}
+
+.pakiadmin-make-footer span {
+  color: rgba(44, 7, 53, 0.4);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pakiadmin-make-footer button {
+  padding: 0;
+  background: transparent;
+  color: #2c0735;
+  font-size: 14px;
+  font-weight: 950;
+  text-underline-offset: 4px;
+}
+
+.pakiadmin-make-footer button:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.pakiadmin-make-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.pakiadmin-make-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 7, 53, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.pakiadmin-make-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 448px;
+  padding: clamp(32px, 4vw, 40px);
+  border: 1px solid #dec0f1;
+  border-radius: 40px;
+  background: #ffffff;
+  box-shadow: 0 25px 50px rgba(44, 7, 53, 0.25);
+  animation: pakiadmin-modal-in 240ms ease both;
+}
+
+.pakiadmin-make-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  border-radius: 999px;
+  background: transparent;
+  color: #2c0735;
   transition: background-color 160ms ease;
 }
 
-.primary-button:hover {
-  background: #000000;
+.pakiadmin-make-close:hover {
+  background: rgba(222, 192, 241, 0.2);
 }
 
-@media (max-width: 640px) {
-  .login-page {
-    padding: 16px;
+.pakiadmin-make-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pakiadmin-make-recovery,
+.pakiadmin-make-recovery-form {
+  display: grid;
+  gap: 24px;
+}
+
+.pakiadmin-make-recovery h3,
+.pakiadmin-make-sent h3 {
+  margin: 0;
+  color: #2c0735;
+  font-size: 24px;
+  font-weight: 950;
+  line-height: 1.2;
+}
+
+.pakiadmin-make-recovery p,
+.pakiadmin-make-sent p {
+  margin: 8px 0 0;
+  color: rgba(44, 7, 53, 0.5);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.pakiadmin-make-sent {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.pakiadmin-make-success {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.pakiadmin-make-success svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 3;
+}
+
+.pakiadmin-make-sent strong {
+  color: #2c0735;
+}
+
+.pakiadmin-make-sent button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(222, 192, 241, 0.3);
+  color: #2c0735;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease;
+}
+
+.pakiadmin-make-sent button:hover {
+  background: rgba(222, 192, 241, 0.5);
+}
+
+@keyframes pakiadmin-fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
   }
 
-  .login-card {
-    padding: 24px;
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pakiadmin-fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pakiadmin-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .pakiadmin-make-main {
+    padding: 32px 24px;
+  }
+
+  .pakiadmin-make-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pakiadmin-make-context {
+    display: none;
+  }
+
+  .pakiadmin-make-card-wrap {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .pakiadmin-make-nav {
+    height: 64px;
+  }
+
+  .pakiadmin-make-main {
+    padding: 24px 16px;
+  }
+
+  .pakiadmin-make-card {
+    padding: 28px 20px;
+    border-radius: 28px;
+  }
+
+  .pakiadmin-make-heading-row {
+    align-items: flex-start;
+  }
+
+  .pakiadmin-make-heading h2 {
+    font-size: 26px;
+  }
+
+  .pakiadmin-make-identifier {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  .pakiadmin-make-actions,
+  .pakiadmin-make-footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
